@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 13, 2020 at 06:08 PM
+-- Generation Time: Nov 13, 2020 at 06:17 PM
 -- Server version: 10.3.16-MariaDB
 -- PHP Version: 7.3.6
 
@@ -43,9 +43,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `login`, `password`, `email`, `role`) VALUES
-(1, 'admin', '$2y$13$WSPDrhzJsLf0yHflV4YPquvXerWFynEwMMpBgEifkoEvlarlsZGte', 'admin@example.com', 100),
-(2, 'user', '$2y$13$lxvf6prk2x7s7SaF9soKWufvjGk4P/fzoUOyE81f/KL/EYWi9Sae.', 'user@example2.com', 0),
-(3, 'test', '$2y$13$lg7nKNk.w7LMpZpytV3fluRzl.hdC3itk1qqH9eyf.xzZcKJ6t4z.', 'test@example.com', 0);
+(1, 'admin', '$2y$13$rvgRrbCENmayYIgxJOmHSejWk3sBTknBaEpuudfMXRs3vq4E9PhJe', 'admin@example.com', 100),
+(2, 'user', '$2y$13$eCnmcTQomV3KrqBJW2UuD.zBDmoQ5tvWyURO05ATXxULirTMAtX6G', 'user@example2.com', 0),
+(3, 'test', '$2y$13$ffcbl1SzzwiGZRN.ZQSC8ueQymYyTvE2GxrQ0Q6fhaFwzu1wQgLM6', 'test@example.com', 0);
 
 --
 -- Indexes for dumped tables
