@@ -7,43 +7,36 @@ $user = $_SESSION['user'];
 
 if (!loggedIn()) {
 	header('Location: ../');
-} else if (isset($_POST['login'])){
+} else if (isset($_POST['ologin'])){
 	$db = new DB("mysql", "localhost", "crud", "utf8mb4", "root", "");
 
-	$userDB = $db->query('SELECT * FROM users WHERE login = ?', array(htmlspecialchars($_POST['login'])))->fetch();
+	$userDB = $db->query('SELECT * FROM users WHERE login = ?;', array(htmlspecialchars($_POST['ologin'])))->fetch();
 
 	$id = $userDB['id'];
 
-	var_dump($userDB);
-
-	if ($userDB != false) {
-		if (!password_verify(htmlspecialchars($_POST['cPass']), $userDB['password'])) {
-			header('Location: ../zmena/?failed=1');
-		}
-	}
 	if (isset($_POST['login'])) {
 		if (!empty($_POST['login'])) {
-			$db->query('UPDATE users SET login = ? WHERE id = ?', array(htmlspecialchars($_POST['login']), $userDB['id']));
+			$res = $db->query('UPDATE users SET login = ? WHERE id = ?;', array(htmlspecialchars($_POST['login']), $id));
 		}
 	}
 	if (isset($_POST['email'])) {
 		if (!empty($_POST['email'])) {
-			$db->query('UPDATE users SET email = ? WHERE id = ?', array(htmlspecialchars($_POST['email']), $userDB['id']));
+			$db->query('UPDATE users SET email = ? WHERE id = ?;', array(htmlspecialchars($_POST['email']), $id));
 		}
 	}
 	if (isset($_POST['pass'])) {
 		if (!empty($_POST['pass'])) {
-			$db->query('UPDATE users SET password = ? WHERE id = ?', array(password_hash(htmlspecialchars($_POST['pass']), PASSWORD_BCRYPT, ["cost" => 13]), $userDB['id']));
+			$db->query('UPDATE users SET password = ? WHERE id = ?;', array(password_hash(htmlspecialchars($_POST['pass']), PASSWORD_BCRYPT, ["cost" => 13]), $id));
 		}
 	}
 
 	if (isset($_POST['role'])) {
 		if (!empty($_POST['role'])) {
-			$db->query('UPDATE users SET role = ? WHERE id = ?', array(htmlspecialchars($_POST['role']), $userDB['id']));
+			$db->query('UPDATE users SET role = ? WHERE id = ?;', array(htmlspecialchars($_POST['role']), $id));
 		}
 	}
 
-	$stmt = $db->query("SELECT login, password, email, role FROM users WHERE id = ?", array($userDB['id']));
+	$stmt = $db->query("SELECT login, password, email, role FROM users WHERE id = ?;", array($id));
 	$user = $stmt->fetch();
 
 	if ($user == false) {

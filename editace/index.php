@@ -13,6 +13,7 @@ if (!loggedIn() || $user->getRole() <= 50) {
 	$user = $db->query("SELECT id, login, email, password, role FROM users WHERE id = ?", array(htmlspecialchars($_GET['id'])))->fetch();
 
 	$inputs .= '<input type="text" name="login" id="login" class="form_input" placeholder="Login" value="' . $user['login'] . '">
+				<input type="hidden" name="ologin" id="ologin" class="form_input" value="' . $user['login'] . '">
 				<input type="text" name="email" id="email" class="form_input" placeholder="Email" value="' . $user['email'] . '">
 				<input type="text" name="role" id="role" class="form_input" placeholder="Role" value="' . $user['role'] . '">
 				<input type="password" name="pass" id="passA" class="form_input" placeholder="Heslo, alespoň 8 znaků">
@@ -102,7 +103,7 @@ if (!loggedIn() || $user->getRole() <= 50) {
 			});
 
 			let url = window.location;
-			if (url.toString().includes("?")) {
+			if (url.toString().includes("?") && !url.toString().includes("id")) {
 				if (url.toString().split("?")[1].split("=")[1] == "0") {
 					alert("Úspěšná změna údajů.");
 				} else if (url.toString().split("?")[1].split("=")[1] == "1") {
